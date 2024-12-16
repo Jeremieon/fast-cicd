@@ -17,6 +17,10 @@ jobs:
         uses: hashicorp/setup-terraform@v2
         with:
           terraform_version: 1.10.2
+      
+      - name: Initialize Terraform
+        run: terraform init
+        working-directory: terra-aws
 
       - name: Terraform Destroy
         run: terraform destroy -auto-approve
