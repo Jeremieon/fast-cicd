@@ -22,8 +22,11 @@ variable "my_ip" {
 #   description = "Path to the SSH public key"
 #   default     = "~/.ssh/id_rsa.pub"
 # }
-
-variable "SSH_PUBLIC_KEY" {}
+variable "SSH_PUBLIC_KEY" {
+  description = "The public SSH key for accessing instances"
+  type        = string
+  sensitive   = true  
+}
 
 variable "instance_name" {
   description = "Unique name for resources create"
