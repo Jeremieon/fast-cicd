@@ -22,16 +22,8 @@ jobs:
         run: terraform init
         working-directory: ./terra-aws
 
-      - name: Show Current Terraform Workspace
-        run: terraform workspace show
-        working-directory: ./terra-aws
-
-      - name: List Resources in State
-        run: terraform state list
-        working-directory: ./terra-aws
-
       - name: Terraform Destroy
-        run: terraform destroy -auto-approve
+        run: terraform destroy -auto-approve tfplan
         working-directory: ./terra-aws
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
