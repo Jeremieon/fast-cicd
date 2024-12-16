@@ -9,7 +9,7 @@ on:
       action:
         description: "Specify action (apply or destroy)"
         required: false
-        default: "apply"
+        default: "destroy"
         type: string
 
 env:
