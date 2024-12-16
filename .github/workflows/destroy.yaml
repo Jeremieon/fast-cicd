@@ -15,6 +15,14 @@ jobs:
         with:
           token: ${{ secrets.HUB_TOKEN }}
 
+      - name: Set up AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
+          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v2
         with:
@@ -27,9 +35,3 @@ jobs:
       - name: Terraform Destroy
         run: terraform destroy -auto-approve
         working-directory: terra-aws
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: eu-west-1
-          SSH_PUBLIC_KEY: ${{ secrets.SSH_PUBLIC_KEY }}
-          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
