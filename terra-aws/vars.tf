@@ -18,11 +18,12 @@ variable "my_ip" {
   default     = "91.130.2.122"
 }
 
-variable "ssh_key_path" {
-  description = "Path to the SSH public key"
-  default     = "~/.ssh/id_rsa.pub"
-}
+# variable "ssh_key_path" {
+#   description = "Path to the SSH public key"
+#   default     = "~/.ssh/id_rsa.pub"
+# }
 
+variable "SSH_PUBLIC_KEY" {}
 
 variable "instance_name" {
   description = "Unique name for resources create"
