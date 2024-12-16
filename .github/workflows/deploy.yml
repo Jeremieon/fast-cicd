@@ -46,7 +46,7 @@ jobs:
           #TF_LOG: DEBUG
 
       - name: Apply Terraform
-        run: terraform destroy -auto-approve
+        run: terraform destroy -auto-approve tfplan
         working-directory: terra-aws
         env:
           SSH_PUBLIC_KEY: ${{ secrets.SSH_PUBLIC_KEY }}
