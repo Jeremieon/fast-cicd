@@ -23,7 +23,7 @@ jobs:
         working-directory: ./terra-aws
 
       - name: Terraform Destroy
-        run: terraform destroy -auto-approve
+        run: terraform destroy -auto-approve -state=/home/runner/work/_temp/3ab2417f-3d54-4ebb-8b82-e3680b385bab/terraform-bin/terraform.tfstate
         working-directory: ./terra-aws
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
