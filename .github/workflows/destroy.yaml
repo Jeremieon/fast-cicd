@@ -22,9 +22,6 @@ jobs:
         run: terraform init
         working-directory: terra-aws
 
-      - name: Select Terraform Workspace
-        run: terraform workspace select main
-
       - name: Terraform Destroy
         run: terraform destroy -auto-approve
         working-directory: terra-aws
