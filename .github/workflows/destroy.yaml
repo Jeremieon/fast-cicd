@@ -20,11 +20,11 @@ jobs:
 
       - name: Initialize Terraform
         run: terraform init
-        working-directory: terra-aws
+        working-directory: ./terra-aws
 
       - name: Terraform Destroy
         run: terraform destroy -auto-approve
-        working-directory: terra-aws
+        working-directory: ./terra-aws
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
