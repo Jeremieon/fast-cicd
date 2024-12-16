@@ -5,6 +5,12 @@ on:
     branches:
       - main
   workflow_dispatch:
+    inputs:
+      action:
+        description: "Specify action (apply or destroy)"
+        required: false
+        default: "apply"
+        type: string
 
 env:
   SSH_PUBLIC_KEY: ${{ secrets.SSH_PUBLIC_KEY }}
@@ -38,16 +44,17 @@ jobs:
         run: terraform validate
         working-directory: terra-aws
 
-      - name: Plan Terraform
-        run: terraform plan -out=tfplan
-        working-directory: terra-aws
-        env:
-          SSH_PUBLIC_KEY: ${{ secrets.SSH_PUBLIC_KEY }}
-          #TF_LOG: DEBUG
-
-      - name: Apply Terraform
+      - name: Apply Terraform (if action is apply)
         run: terraform apply -auto-approve tfplan
         working-directory: terra-aws
+        if: ${{ github.event.inputs.action == 'apply' }}
+        env:
+          SSH_PUBLIC_KEY: ${{ secrets.SSH_PUBLIC_KEY }}
+
+      - name: Destroy Terraform (if action is destroy)
+        run: terraform destroy -auto-approve
+        working-directory: terra-aws
+        if: ${{ github.event.inputs.action == 'destroy' }}
         env:
           SSH_PUBLIC_KEY: ${{ secrets.SSH_PUBLIC_KEY }}
 
