@@ -23,7 +23,7 @@ jobs:
         working-directory: ./terra-aws
 
       - name: Terraform Destroy
-        run: terraform destroy -auto-approve tfplan
+        run: terraform destroy -auto-approve
         working-directory: ./terra-aws
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
