@@ -58,6 +58,7 @@ jobs:
           git add terraform.tfstate
           git commit -m "Update terraform state"
           git push
+        working-directory: terra-aws
 
   fastapi-deploy:
     runs-on: ubuntu-latest
