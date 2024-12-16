@@ -22,12 +22,14 @@ jobs:
 
       - name: Initialize Terraform
         run: terraform init
+        working-directory: terra-aws
 
       - name: Terraform Destroy
         run: terraform destroy -auto-approve
+        working-directory: terra-aws
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: us-west-1
+          AWS_DEFAULT_REGION: eu-west-1
           SSH_PUBLIC_KEY: ${{ secrets.SSH_PUBLIC_KEY }}
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
