@@ -41,6 +41,8 @@ jobs:
       - name: Plan Terraform
         run: terraform plan -out=tfplan
         working-directory: terra-aws
+        env:
+          SSH_PUBLIC_KEY: ${{ secrets.SSH_PUBLIC_KEY }}
 
       - name: Apply Terraform
         run: terraform apply -auto-approve tfplan
